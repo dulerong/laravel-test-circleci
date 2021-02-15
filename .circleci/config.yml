@@ -61,5 +61,13 @@ jobs:
           command: php artisan passport:install
 
       - run:
+          name: show directory 
+          command: pwd
+          
+      - run:
+          name: look in directory
+          command: ls -ltr
+
+      - run:
           name: "Run Tests"
           command: ./vendor/bin/phpunit
