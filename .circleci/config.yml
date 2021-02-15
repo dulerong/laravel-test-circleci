@@ -4,6 +4,17 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:7.4-node-browsers
+        environment:
+          - APP_DEBUG: true
+          - APP_ENV: testing
+          - DB_CONNECTION: mysql
+          - DB_DATABASE: laravel-test-circleci-testingDB
+          - DB_USERNAME: root
+
+      - image: circleci/mysql:5.7-ram
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: true
+          - MYSQL_DATABASE: laravel-test-circleci-testingDB
 
     steps:
       - checkout
@@ -29,19 +40,27 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
             - ./vendor
+
+      # - run: echo "APP_KEY=" > .env.testing
+      # - run: php artisan key:generate
+      # - run: php artisan migrate
+ 
+      # - run: ./vendor/bin/phpunit
+
       - run:
           name: "Create Environment file and generate app key"
           command: |
-            mv .env.testing .env
             php artisan key:generate
+
       - run:
           name: "Create database and run migration"
           command: |
-            touch laravel-test-circleci
-            php artisan migrate --env=testing
+            php artisan migrate
+
       - run:
           name: "Generate Passport encryption keys"
           command: php artisan passport:install
+
       - run:
           name: "Run Tests"
           command: ./vendor/bin/phpunit

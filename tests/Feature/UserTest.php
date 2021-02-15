@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    use WithFaker;
+    use WithFaker, RefreshDatabase;
 
     private $password = "password";
 
