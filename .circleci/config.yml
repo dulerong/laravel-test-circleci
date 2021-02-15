@@ -11,10 +11,10 @@ jobs:
           - DB_DATABASE: laravel-test-circleci-testingDB
           - DB_USERNAME: root
 
-      - image: circleci/mysql:8.0.4
-        environment:
-          - MYSQL_ALLOW_EMPTY_PASSWORD: true
-          - MYSQL_DATABASE: laravel-test-circleci-testingDB
+      # - image: circleci/mysql:8.0.4
+      #   environment:
+      #     - MYSQL_ALLOW_EMPTY_PASSWORD: true
+      #     - MYSQL_DATABASE: laravel-test-circleci-testingDB
 
     steps:
       - checkout
@@ -45,12 +45,6 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
             - ./vendor
-
-      # - run: echo "APP_KEY=" > .env.testing
-      # - run: php artisan key:generate
-      # - run: php artisan migrate
- 
-      # - run: ./vendor/bin/phpunit
 
       - run:
           name: "Create Environment file and generate app key"
