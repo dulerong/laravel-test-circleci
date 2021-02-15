@@ -4,9 +4,9 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:7.4-node-browsers
-        environment:
-          - APP_DEBUG: true
-          - APP_ENV: testing
+        # environment:
+          # - APP_DEBUG: true
+          # - APP_ENV: testing
           # - DB_CONNECTION: mysql
           # - DB_DATABASE: laravel-test-circleci-testingDB
           # - DB_USERNAME: root
