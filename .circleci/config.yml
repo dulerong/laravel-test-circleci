@@ -18,6 +18,11 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: Install MySQL driver
+          command: |
+            sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
+            sudo docker-php-ext-install zip bcmath pdo_mysql
 
       - run:
           name: "Prepare Environment"
