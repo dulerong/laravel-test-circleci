@@ -4,7 +4,7 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:7.4-node-browsers
-        # environment:
+        # environment: (without this: if .env file is created later, CircleCI can still run)
           # - APP_DEBUG: true
           # - APP_ENV: testing
           # - DB_CONNECTION: mysql
@@ -71,4 +71,4 @@ jobs:
 
       - run:
           name: "Run Tests"
-          command: vendor/phpunit/phpunit/phpunit
+          command: php artisan test tests/Feature
