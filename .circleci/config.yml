@@ -13,8 +13,8 @@ jobs:
 
       - image: circleci/mysql:8.0.20-ram
         environment:
-          # - MYSQL_ALLOW_EMPTY_PASSWORD: true
-          - MYSQL_DATABASE: laravel-test-circleci-testingDB
+          # - MYSQL_ALLOW_EMPTY_PASSWORD: true (without this, CircleCI worked)
+          # - MYSQL_DATABASE: laravel-test-circleci-testingDB
 
     steps:
       - checkout
