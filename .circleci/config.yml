@@ -11,10 +11,10 @@ jobs:
           - DB_DATABASE: laravel-test-circleci-testingDB
           - DB_USERNAME: root
 
-      # - image: circleci/mysql:8.0.4
-      #   environment:
-      #     - MYSQL_ALLOW_EMPTY_PASSWORD: true
-      #     - MYSQL_DATABASE: laravel-test-circleci-testingDB
+      - image: circleci/mysql:8.0.20-ram
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: true
+          - MYSQL_DATABASE: laravel-test-circleci-testingDB
 
     steps:
       - checkout
